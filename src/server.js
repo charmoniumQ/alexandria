@@ -8,14 +8,11 @@ var express = require('express');
 var http = require('http');
 var path = require("path");
 
-var log = require('./log');
+// TODO: logging
 var pages = require('./pages');
 
-log.info(". = %s", path.resolve("."));
-log.info("__dirname = %s", path.resolve(__dirname));
-
 var app = express();
-pages(app, log); // apply routing
+pages(app); // apply routing
 var server = http.createServer(app);
 server.listen(PORT);
-log.info('Listening on ' + PORT);
+console.log('Listening on ' + PORT);

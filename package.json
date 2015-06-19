@@ -17,7 +17,8 @@
 		"express": "*",
 		"serve-favicon": "*",
 		"bunyan": "*",
-		"hbs": "*",
-		"lodash": "*"
+		"handlebars": "*",
+		"lodash": "*",
+		"mongojs": "*"
 	}
 }

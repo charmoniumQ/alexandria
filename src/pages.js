@@ -2,7 +2,10 @@
 var handlebars = require('handlebars');
 var express = require('express');
 var fs = require('fs');
+var bodyParser = require('body-parser');
 var _ = require('lodash');
+
+var preview = require('./preview')
 
 // Config
 var defaults = {description: "A library database software", author: "charmoniumQ", title: "Alexandria", site: "Alexandria", footer: "Project Alexandria by charmoniumQ, 2015"};
@@ -10,11 +13,15 @@ var defaults = {description: "A library database software", author: "charmoniumQ
 var template_string = fs.readFileSync('./views/template.html', {encoding: 'utf8'});
 var template_func = handlebars.compile(template_string);
 
-function renderMain(file) {
+function renderContent(content) {
+	return template_func(_.assign(defaults, {content: content}));
+}
+
+function renderFile(file) {
 	// TODO: make asynchronous
 	// TOOD: File encoding
 	var content = fs.readFileSync('./views/' + file);
-	return template_func(_.assign(defaults, {content: content}));
+	return renderContent(content);
 }
 
 // Actual stuff
@@ -22,14 +29,23 @@ module.exports = function (app) {
 	// TODO: express routing
 	// TODO: log request
 
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({extended: true}));
+
 	app.use(express.static('./public'));
 
 	// Content
 	app.get('/', function (req, res) {
-		res.send(renderMain('index.html'));
+		res.send(renderFile('index.html'));
 	});
 
 	app.get('/input', function (req, res) {
-		res.send(renderMain('input.html'));
+		res.send(renderFile('input.html'));
+	});
+
+	app.post('/preview', function (req, res) {
+		preview(req.body, function (content) {
+			res.send(renderContent(content));
+		});
 	});
 };

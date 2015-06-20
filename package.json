@@ -16,9 +16,11 @@
 	"dependencies": {
 		"express": "*",
 		"serve-favicon": "*",
+		"body-parser": "*",
 		"bunyan": "*",
 		"handlebars": "*",
 		"lodash": "*",
-		"mongojs": "*"
+		"mongojs": "*",
+		"request": "*"
 	}
 }

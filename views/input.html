@@ -1,0 +1,36 @@
+<!-- one -->
+<form class="form-horizontal" action="/preview" method="post">
+	<div class="form-group">
+		<label for="shelf" class="col-sm-2 control-label">Shelf:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="shelf" name="shelf" placeholder="top row, third from the left">
+		</div>
+	</div>
+	<div class="form-group">
+		<!-- TODO: make this a spinner with validation -->
+		<label for="position" class="col-sm-2 control-label">Position:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="position" name="position" placeholder="10">
+		</div>
+	</div>
+	<div class="form-group">
+		<!-- TODO: validation -->
+		<label for="ISBN" class="col-sm-2 control-label">ISBN:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="ISBN" name="ISBN" placeholder="0000000000000">
+			<span id="ISBN-input-help" class="text-left help-block">If there are multiple ISBN numbers, use the longest one. If they are the same length, use the one with a larger numeric value.</span>
+		</div>
+
+	</div>
+	<div class="form-group">
+		<label for="notes" class="col-sm-2 control-label">Notes</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" rows="5" id="notes" name="notes"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-default">Preview</button>
+		</div>
+	</div>
+</form>

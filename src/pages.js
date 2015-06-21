@@ -5,7 +5,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 
-var preview = require('./preview')
+var rest = require('./rest')
 
 // Config
 var defaults = {description: "A library database software", author: "charmoniumQ", title: "Alexandria", site: "Alexandria", footer: "Project Alexandria by charmoniumQ, 2015"};
@@ -31,7 +31,6 @@ module.exports = function (app) {
 
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({extended: true}));
-
 	app.use(express.static('./public'));
 
 	// Content
@@ -43,9 +42,14 @@ module.exports = function (app) {
 		res.send(renderFile('input.html'));
 	});
 
-	app.post('/preview', function (req, res) {
-		preview(req.body, function (content) {
-			res.send(renderContent(content));
-		});
+	app.get('/edit', function (req, res) {
 	});
+
+	app.get('/view', function (req, res) {
+	});
+
+	app.get('/search', function (req, res) {
+	});
+
+	app.use('/rest', rest);
 };

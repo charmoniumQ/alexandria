@@ -20,7 +20,7 @@
 		"bunyan": "*",
 		"handlebars": "*",
 		"lodash": "*",
-		"mongojs": "*",
+		"mongoose": "*",
 		"request": "*"
 	}
 }

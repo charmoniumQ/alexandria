@@ -13,6 +13,7 @@ var pages = require('./pages');
 
 var app = express();
 pages(app); // apply routing
+// TODO: server llistening address
 var server = http.createServer(app);
 server.listen(PORT);
 console.log('Listening on ' + PORT);

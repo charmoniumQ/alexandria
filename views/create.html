@@ -1,5 +1,4 @@
-<!-- one -->
-<form class="form-horizontal" action="/preview" method="post">
+<form id="main-form" class="form-horizontal">
 	<div class="form-group">
 		<label for="shelf" class="col-sm-2 control-label">Shelf:</label>
 		<div class="col-sm-10">
@@ -15,12 +14,11 @@
 	</div>
 	<div class="form-group">
 		<!-- TODO: validation -->
-		<label for="ISBN" class="col-sm-2 control-label">ISBN:</label>
+		<label for="originalISBN" class="col-sm-2 control-label">ISBN:</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="ISBN" name="ISBN" placeholder="0000000000000">
+			<input type="text" class="form-control" id="originalISBN" name="originalISBN" placeholder="0000000000000">
 			<span id="ISBN-input-help" class="text-left help-block">If there are multiple ISBN numbers, use the longest one. If they are the same length, use the one with a larger numeric value.</span>
 		</div>
-
 	</div>
 	<div class="form-group">
 		<label for="notes" class="col-sm-2 control-label">Notes</label>
@@ -28,9 +26,28 @@
 			<textarea class="form-control" rows="5" id="notes" name="notes"></textarea>
 		</div>
 	</div>
+	<!-- TODO: button JS submit form -->
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-default">Preview</button>
+			<button type="text" class="btn btn-success" id="form-submit">Submit</button>
 		</div>
 	</div>
 </form>
+
+
+$(document).ready(function () {
+	$('#form-submit').on('click', function (event) {
+		console.log('hi');
+		$.ajax({
+			data: $('#main-form').serialize(),
+			method: 'POST',
+			success: function (data, textStatus, jqXHR) {
+				console.log(data.id);
+				// TODO: redirect to '/view?id=' + $('#bookID').text()
+			},
+			url: '/rest/'
+			// TODO: handle AJAX error
+		});
+	});
+});
+

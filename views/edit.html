@@ -1,0 +1,73 @@
+<h1>{{book.title}}: <small>{{book.subtitle}}</small></h1>
+<h2>{{authors}}</h2>
+<img src="{{image}}" alt="front cover"></img>
+<p>Number {{book.position}}, on the {{book.shelf}}</p>
+<hr>
+
+<form class="form-horizontal" id="main-form">
+	<!-- TODO: grid formatting -->
+
+	<input type="hidden" name="bookID" value="{{book.id}}" id="bookID">
+	<div class="form-group">
+		<label for="shelf" class="col-sm-2 control-label">Shelf:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="shelf" name="shelf" value="{{book.shelf}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<!-- TODO: make this a spinner with validation -->
+		<label for="position" class="col-sm-2 control-label">Position:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="position" name="position" value="{{book.position}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="notes" class="col-sm-2 control-label">Notes</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" rows="5" id="notes" name="notes">{{book.notes}}</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-2">
+			<button type="submit" class="btn btn-primary" id="form-update">Update</button>
+		</div>
+		<div class="col-sm-offset-4 col-sm-2">
+			<button type="button" class="btn btn-danger" id="form-delete">Delete</button>
+		</div>
+		<div class="col-sm-offset-4 col-sm-2">
+			<button type="button" class="btn btn-info" id="form-cancel">Cancel</button>
+		</div>
+	</div>
+</form>
+
+<script>
+$('#form-update').on('click', function (event) {
+	$.ajax({
+		data: $('#main-form').seralize(),
+		method: 'POST',
+		success: function (data, textStatus, jqXHR) {
+			console.log(data.id);
+			// TODO: redirect to '/view?id=' + $('#bookID').text()
+		},
+		url: '/rest/' + $('#bookID').text()
+		// TODO: handle AJAX error
+	});
+});
+
+$('#form-delete').on('click', function (event) {
+	$.ajax({
+		data: {delete: true}
+		method: 'POST',
+		success: function (data, textStatus, jqXHR) {
+			console.log(data.id);
+			// TODO: redirect
+		},
+		url: '/rest/' + $('#bookID').text()
+		// TODO: handle AJAX error
+	});
+});
+
+$('#form-cancel').on('click', function (event) {
+	// TODO: redirect to '/view?id=' + $('#bookID').text()
+});
+</script>

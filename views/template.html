@@ -12,12 +12,12 @@
 		<title>{{title}}</title>
 
 		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/res/bootstrap-3.3.5-dist/css/bootstrap.css">
 
 		<!-- Custom styles for this template -->
-		<link rel="stylesheet" href="http://getbootstrap.com/examples/starter-template/starter-template.css">
-		<link rel="stylesheet" href="http://getbootstrap.com/examples/sticky-footer/sticky-footer.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/res/bootstrap_extra/starter-template.css">
+		<link rel="stylesheet" href="/res/bootstrap_extra/sticky-footer.css">
+		<link rel="stylesheet" href="/res/bootstrap_extra/bootstrap-theme.min.css">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -27,6 +27,11 @@
 	</head>
 
 	<body>
+		<!-- TODO: figure out a way to run sub-template scripts after this -->
+		<!--       so that this can be moved to the bottom -->
+		<script src="/res/jquery-1.11.3.min.js"></script>
+		<script src="/res/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
 		<!--
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
@@ -45,11 +50,9 @@
 		-->
 
 		<div class="container">
-
 			<div class="starter-template">
-				{{{content}}}
+{{{content}}}
 			</div>
-
 		</div><!-- /.container -->
 
 		<footer class="footer">
@@ -57,11 +60,5 @@
 				<p class="text-muted">{{{footer}}}</p>
 			</div>
 		</footer>
-
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	</body>
 </html>

@@ -15,7 +15,6 @@
 	"private": true,
 	"dependencies": {
 		"express": "*",
-		"serve-favicon": "*",
 		"body-parser": "*",
 		"bunyan": "*",
 		"handlebars": "*",

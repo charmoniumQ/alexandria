@@ -102,3 +102,9 @@ router.post('/:id', function (req, res) {
 });
 
 module.exports = router;
+module.exports.extras = {};
+module.exports.extras.list_documents = list_documents;
+module.exports.extras.create_document = create_document;
+module.exports.extras.get_document = get_document;
+module.exports.extras.update_document = update_document;
+module.exports.extras.delete_document = delete_document;

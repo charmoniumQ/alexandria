@@ -38,17 +38,43 @@ module.exports = function (app) {
 		res.send(renderFile('index.html'));
 	});
 
-	app.get('/input', function (req, res) {
-		res.send(renderFile('input.html'));
+	app.get('/create', function (req, res) {
+		res.send(renderFile('create.html'));
+		// Test ISBN: 0394741714
+		//            0449210928
+		//            0316069582
+		//            0890969108
+	});
+
+	app.get('/create2', function (req, res) {
+		res.send(renderFile('create2.html'));
 	});
 
 	app.get('/edit', function (req, res) {
+		rest.extras.get_document(req.url.id, function (book) {
+			// TODO: handlebar partials
+			var edit_string = fs.readFileSync('./views/edit.html', 'utf8');
+			var edit_function = handlebars.compile(edit_string);
+			var edit_content = edit_function({book: book, authors: book.authors.join(', ')});
+			res.send(renderContent(edit_content));
+		});
+
 	});
 
 	app.get('/view', function (req, res) {
+		rest.extras.get_document(req.url.id, function (book) {
+			var view_string = fs.readFileSync('./views/view.html', 'utf8');
+			var view_function = handlebars.compile(view_string);
+			var view_content = view_function({book: book, authors: book.authors.join(', ')});
+			res.send(renderContent(edit_content));
+		});
 	});
 
 	app.get('/search', function (req, res) {
+		res.send(renderFile('search.html'));
+	});
+
+	app.get('/virtualshelf', function (req, res) {
 	});
 
 	app.use('/rest', rest);

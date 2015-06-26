@@ -29,12 +29,12 @@
 	<!-- TODO: button JS submit form -->
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="text" class="btn btn-success" id="form-submit">Submit</button>
+			<button type="button" class="btn btn-success" id="form-submit">Submit</button>
 		</div>
 	</div>
 </form>
 
-
+<script>
 $(document).ready(function () {
 	$('#form-submit').on('click', function (event) {
 		console.log('hi');
@@ -42,12 +42,13 @@ $(document).ready(function () {
 			data: $('#main-form').serialize(),
 			method: 'POST',
 			success: function (data, textStatus, jqXHR) {
-				console.log(data.id);
-				// TODO: redirect to '/view?id=' + $('#bookID').text()
+				console.log(data._id);
+				// TODO: redirect
+				//window.location.href = '/view?id=' + data._id
 			},
 			url: '/rest/'
 			// TODO: handle AJAX error
 		});
 	});
 });
-
+</script>

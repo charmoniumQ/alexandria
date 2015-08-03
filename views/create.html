@@ -41,7 +41,7 @@ $(document).ready(function () {
 			data: $('#main-form').serialize(),
 			method: 'POST',
 			success: function (data, textStatus, jqXHR) {
-				window.location.href = '/view?id=' + data._id
+				window.location.href = '/view?id=' + data._id;
 			},
 			url: '/rest/'
 			// TODO: handle AJAX error

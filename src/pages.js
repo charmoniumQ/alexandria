@@ -9,7 +9,7 @@ var rest = require('./rest')
 
 // Config
 var defaults = {description: "A library database software", author: "charmoniumQ", title: "Alexandria", site: "Alexandria", footer: "Project Alexandria by charmoniumQ, 2015"};
-// TODO: async file read
+// TODO: async file read with partial template application
 var template_string = fs.readFileSync('./views/template.html', {encoding: 'utf8'});
 var template_func = handlebars.compile(template_string);
 
@@ -22,6 +22,19 @@ function renderFile(file) {
 	// TOOD: File encoding
 	var content = fs.readFileSync('./views/' + file);
 	return renderContent(content);
+}
+
+function pluralify(list) {
+	// TODO: handlebars helper
+	if (list.length === 1) {
+		return list[0];
+	}
+	if (list.length == 2) {
+		return list.join(' and ');
+	}
+	rest = list.slice(0, -1);
+	last = list.slice(-1)[0];
+	return rest.join(', ') + ', and ' + last;
 }
 
 // Actual stuff
@@ -46,27 +59,23 @@ module.exports = function (app) {
 		//            0890969108
 	});
 
-	app.get('/create2', function (req, res) {
-		res.send(renderFile('create2.html'));
-	});
-
 	app.get('/edit', function (req, res) {
-		rest.extras.get_document(req.url.id, function (book) {
+		rest.extras.get_document(req.query.id, function (book) {
 			// TODO: handlebar partials
 			var edit_string = fs.readFileSync('./views/edit.html', 'utf8');
 			var edit_function = handlebars.compile(edit_string);
-			var edit_content = edit_function({book: book, authors: book.authors.join(', ')});
+			var edit_content = edit_function({book: book, authors: pluralify(book.authors)});
 			res.send(renderContent(edit_content));
 		});
 
 	});
 
 	app.get('/view', function (req, res) {
-		rest.extras.get_document(req.url.id, function (book) {
+		rest.extras.get_document(req.query.id, function (book) {
 			var view_string = fs.readFileSync('./views/view.html', 'utf8');
 			var view_function = handlebars.compile(view_string);
-			var view_content = view_function({book: book, authors: book.authors.join(', ')});
-			res.send(renderContent(edit_content));
+			var view_content = view_function({book: book, authors: pluralify(book.authors)});
+			res.send(renderContent(view_content));
 		});
 	});
 

@@ -1,4 +1,24 @@
-<h1>{{book.title}}: <small>{{book.subtitle}}</small></h1>
-<h2>{{authors}}</h2>
-<img src="{{image}}" alt="front cover"></img>
-<p>Number {{book.position}}, on the {{book.shelf}}</p>
+<img src="{{book.imageLinks.thumbnail}}" alt="front cover"></img>
+<h1>{{book.title}} <div id="rating" data-score="{{book.averageRating}}"></div></h1>
+<h2>{{book.subtitle}}</h2>
+<h2><small>{{authors}} ({{book.publishedDate}})</small></h2>
+
+<p>Number {{book.position}}, {{book.shelf}}</p>
+
+<!-- TODO: grayish font color -->
+<p>{{book.description}}</p>
+
+<p>{{book.notes}}</p>
+
+<a href="/edit?id={{book._id}}">edit</a>
+
+<script>
+// TODO: figure out what I am doing?
+$('#rating').raty({
+	readOnly: true,
+	number: 5,
+	score: function () {
+		return $(this).attr('data-score');
+	}
+});
+</script>

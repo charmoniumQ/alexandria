@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Config
 var PORT = 3000;
 

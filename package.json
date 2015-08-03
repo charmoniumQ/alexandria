@@ -21,5 +21,6 @@
 		"lodash": "*",
 		"mongoose": "*",
 		"request": "*"
-	}
+	},
+	"_comment": "TODO: Bower (jquery, bootstrap, raty)"
 }

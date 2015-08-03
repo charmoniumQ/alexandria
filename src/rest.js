@@ -108,3 +108,8 @@ module.exports.extras.create_document = create_document;
 module.exports.extras.get_document = get_document;
 module.exports.extras.update_document = update_document;
 module.exports.extras.delete_document = delete_document;
+
+/*
+TODO: refactor properties:
+module.exports = {list, create, get, update, delete, router}
+*/
